@@ -2,7 +2,7 @@ from flask_restful import Resource, Api
 
 class Home(Resource):
     def get(self):
-        return {'hello': 'get'}
+        return {'cus': 'get'}
     def post(self):
         return {'hello': 'POST'}
     def put(self):
