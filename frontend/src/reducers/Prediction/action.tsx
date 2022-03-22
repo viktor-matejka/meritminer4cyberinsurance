@@ -2,16 +2,16 @@ import {ThunkDispatch} from "redux-thunk";
 import {ActionTypes, ErrorFetchingPredictions, FetchedPredictions, FetchingPredictions} from "./types";
 import {getDomain} from "../../helpers/Domain";
 import {HTTP_OPTIONS, PROTOCOL_METHOD} from "../../helpers/FetchOptions";
-
+import { convertor } from "../../helpers/Convertor"
 interface UserProfile {
     investedAmount: number,
     successfulAttacks: number,
     failedAttacks: number,
     businessValue: number,
     nrEmployees: number,
-    employeeTraining: string,
+    employeeTraining: number,
     knownVulnerabilities: number,
-    externalAdvisor: string
+    externalAdvisor: boolean
 }
 
 export const fetchPredictions = (profile: UserProfile): any => {
@@ -23,10 +23,10 @@ export const fetchPredictions = (profile: UserProfile): any => {
             type: ActionTypes.FETCHING_PREDICTIONS,
             loading: true
         });
-
+        const body = convertor(profile)
         //dummy promise
         await new Promise(resolve => setTimeout(resolve, 1000));
-        fetch(`${getDomain()}/predict`, {...HTTP_OPTIONS(PROTOCOL_METHOD.POST), body: JSON.stringify(profile)})
+        fetch(`${getDomain()}/predict`, {...HTTP_OPTIONS(PROTOCOL_METHOD.POST), body: JSON.stringify(body)})
             .then(res => {
                 if (res.ok) {
                     return res.json();
