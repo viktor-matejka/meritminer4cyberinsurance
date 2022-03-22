@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log xes.version="1849-2016" xes.features="nested-attributes" xmlns="http://www.xes-standard.org/">
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext" />
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext" />
+	<string key="origin" value="csv" />
+	<trace>
+		<string key="concept:name" value="1" />
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 08:10:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="team-1_user-1" />
+			<string key="time:timestamp" value="2010-11-03 10:32:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="communication-hub_team_1" />
+			<string key="time:timestamp" value="2010-11-03 11:52:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="team-2_user-3" />
+			<string key="time:timestamp" value="2010-11-03 12:51:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="communication-hub_team_2" />
+			<string key="time:timestamp" value="2010-11-03 14:26:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+		<event>
+			<int key="case_id" value="1" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 14:31:00+00:00" />
+			<string key="filename" value="a" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="2" />
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 08:10:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="team-1_user-5" />
+			<string key="time:timestamp" value="2010-11-03 11:32:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="team-1_user-3" />
+			<string key="time:timestamp" value="2010-11-03 14:52:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="team-1_user-4" />
+			<string key="time:timestamp" value="2010-11-03 15:51:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="communication-hub_team_1" />
+			<string key="time:timestamp" value="2010-11-03 17:26:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+		<event>
+			<int key="case_id" value="2" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 17:31:00+00:00" />
+			<string key="filename" value="b" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="3" />
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 08:10:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="team-2_user-2" />
+			<string key="time:timestamp" value="2010-11-03 09:32:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="team-2_user-3" />
+			<string key="time:timestamp" value="2010-11-03 10:52:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="communication-hub_team_2" />
+			<string key="time:timestamp" value="2010-11-03 15:51:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="team-1_user-3" />
+			<string key="time:timestamp" value="2010-11-03 15:56:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+		<event>
+			<int key="case_id" value="3" />
+			<string key="concept:name" value="P_user-B1" />
+			<string key="time:timestamp" value="2010-11-03 17:31:00+00:00" />
+			<string key="filename" value="c" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="4" />
+		<event>
+			<int key="case_id" value="4" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 10:10:00+00:00" />
+			<string key="filename" value="d" />
+		</event>
+		<event>
+			<int key="case_id" value="4" />
+			<string key="concept:name" value="team-1_user-3" />
+			<string key="time:timestamp" value="2010-11-03 12:11:00+00:00" />
+			<string key="filename" value="d" />
+		</event>
+		<event>
+			<int key="case_id" value="4" />
+			<string key="concept:name" value="team-2_user-2" />
+			<string key="time:timestamp" value="2010-11-03 15:12:00+00:00" />
+			<string key="filename" value="d" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="5" />
+		<event>
+			<int key="case_id" value="5" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 09:10:00+00:00" />
+			<string key="filename" value="e" />
+		</event>
+		<event>
+			<int key="case_id" value="5" />
+			<string key="concept:name" value="team-1_user-5" />
+			<string key="time:timestamp" value="2010-11-03 10:32:00+00:00" />
+			<string key="filename" value="e" />
+		</event>
+		<event>
+			<int key="case_id" value="5" />
+			<string key="concept:name" value="communication-hub_team_1" />
+			<string key="time:timestamp" value="2010-11-03 11:52:00+00:00" />
+			<string key="filename" value="e" />
+		</event>
+		<event>
+			<int key="case_id" value="5" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 11:54:00+00:00" />
+			<string key="filename" value="e" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="6" />
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 09:10:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="team-1_user-4" />
+			<string key="time:timestamp" value="2010-11-03 10:33:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="communication-hub_team_1" />
+			<string key="time:timestamp" value="2010-11-03 12:45:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="team-2_user-2" />
+			<string key="time:timestamp" value="2010-11-03 15:12:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="communication-hub_team_2" />
+			<string key="time:timestamp" value="2010-11-03 17:13:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+		<event>
+			<int key="case_id" value="6" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 17:14:00+00:00" />
+			<string key="filename" value="f" />
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="7" />
+		<event>
+			<int key="case_id" value="7" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 09:46:00+00:00" />
+			<string key="filename" value="g" />
+		</event>
+		<event>
+			<int key="case_id" value="7" />
+			<string key="concept:name" value="team-2_user-2" />
+			<string key="time:timestamp" value="2010-11-03 19:47:00+00:00" />
+			<string key="filename" value="g" />
+		</event>
+		<event>
+			<int key="case_id" value="7" />
+			<string key="concept:name" value="communication-hub_team_2" />
+			<string key="time:timestamp" value="2010-11-03 19:51:00+00:00" />
+			<string key="filename" value="g" />
+		</event>
+		<event>
+			<int key="case_id" value="7" />
+			<string key="concept:name" value="back-up-machine-number_1" />
+			<string key="time:timestamp" value="2010-11-03 19:56:00+00:00" />
+			<string key="filename" value="g" />
+		</event>
+	</trace>
+</log>
