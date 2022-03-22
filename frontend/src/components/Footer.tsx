@@ -12,6 +12,7 @@ export const Footer = () => {
                         </li>
                     </ul>
                     <p className="copyright text-center">
+                        SecRiskAI
                         © {new Date().getFullYear()}{" "}
                         Erion Sula
                     </p>

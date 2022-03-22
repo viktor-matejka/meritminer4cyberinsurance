@@ -59,7 +59,7 @@ export const Dashboard = () => {
     }
 
     let {knn, mlp, svm, dtree} = predictions.overall_risk_prediction
-
+    const trainingLevel = Number.isInteger(profile.employeeTraining)? capitalize(Priorities[profile.employeeTraining]): profile.employeeTraining
     return (
         <Container fluid>
             <Row>
@@ -130,7 +130,7 @@ export const Dashboard = () => {
                                     </div>
                                     <div className="numbers">
                                         <p className="card-category">Training Level</p>
-                                        <Card.Title as="h4">{capitalize(profile.employeeTraining)}</Card.Title>
+                                        <Card.Title as="h4">{trainingLevel}</Card.Title>
                                     </div>
                                 </Col>
                             </Row>
@@ -185,7 +185,7 @@ export const Dashboard = () => {
 
                                     <div className="numbers">
                                         <p className="card-category">External Cybersecurity Advisor</p>
-                                        <Card.Title as="h4">{capitalize(profile.externalAdvisor)}</Card.Title>
+                                        <Card.Title as="h4">{capitalize(profile.externalAdvisor ? "Yes" : "No")}</Card.Title>
                                     </div>
                                 </Col>
                             </Row>
