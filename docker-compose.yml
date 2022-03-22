@@ -3,11 +3,13 @@ services:
   web:
     build: frontend
     ports:
-      - "3001:3001"
+      - "${WEB_PORT}:3000"
     env_file:
-      - frontend/.env
+      - .env
     links:
       - middleware
+    volumes:
+      - ./frontend/src:/app/src
   middleware:
     build: middleware
     ports:
@@ -27,6 +29,8 @@ services:
       - backend
   ml_models_management:
     image: bentoml/yatai-service:latest
+    env_file:
+      - .env
     command:
       - --db-url=${DB_URL}
       - --repo-base-url=${REPO_BASE_URL}
@@ -41,5 +45,33 @@ services:
       - "5001"
     networks:
       - backend
+  api:
+    build: api
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+    env_file:
+      - .env
+    volumes:
+      - ./api:/api
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: postgres:14-alpine
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=prototype
+    networks:
+      - backend
+    ports:
+      - "54321:5432"
+
 networks:
   backend:
+volumes:
+  postgres_data:

@@ -21,7 +21,7 @@ export const Sidebar = (props: SidebarProps) => {
             <div className="sidebar-wrapper">
                 <div className="logo d-flex align-items-center justify-content-start">
                     <a href="/#" className="simple-text">
-                        <Icon size="2x" icon={"realtime"} /> SecRiskAI
+                        <Icon size="2x" icon={"realtime"} /> Cyber Insurance Application
                     </a>
                 </div>
                 <Nav>

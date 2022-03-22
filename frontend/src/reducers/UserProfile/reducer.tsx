@@ -7,19 +7,19 @@ import {
 
 const initialState: UserProfileState = {
     profile: {
-        "companyName": "Company XY",
-        "industry": "HEALTHCARE",
-        "region": "EUROPE",
-        "budget": 50000,
-        "budgetWeight": 1,
-        "investedAmount": 1077113,
-        "successfulAttacks": 8,
-        "failedAttacks": 29,
-        "businessValue": 4947796,
-        "nrEmployees": 57879,
-        "employeeTraining": "HIGH",
-        "knownVulnerabilities": 6,
-        "externalAdvisor": "YES",
+        budget: 0,
+        budgetWeight: 1,
+        businessValue: 0,
+        companyName: "",
+        employeeTraining: 1,
+        externalAdvisor: false,
+        failedAttacks: 0,
+        industry: "TELECOM",
+        investedAmount: 0,
+        knownVulnerabilities: 0,
+        nrEmployees: 0,
+        region: "EUROPE",
+        successfulAttacks: 0
     },
     serviceConfiguration: {
         "serviceType": ["PROACTIVE"],

@@ -1,9 +1,9 @@
-export const ExternalAdvisor: { label: string, value: string }[] = [
+export const ExternalAdvisor: { label: string, value: boolean }[] = [
     {
         label: 'Yes',
-        value: 'YES',
+        value: true,
     }, {
         label: 'No',
-        value: 'NO',
+        value: false,
     }
 ];

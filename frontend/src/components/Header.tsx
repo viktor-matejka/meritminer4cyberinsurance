@@ -22,7 +22,7 @@ export const Header = () => {
     const getBrandText = () => {
         for (let i = 0; i < routes.length; i++) {
             if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
-                return routes[i].name;
+                return routes[i].title || routes[i].name;
             }
         }
         return "Brand";
