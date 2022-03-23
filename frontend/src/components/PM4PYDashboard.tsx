@@ -123,7 +123,7 @@ export const PM4PYDashboard = () => {
           </small>
         </Card.Text>
         <Card.Text className="text-right text-dark">
-          {item.fitness}
+          {item.fitness + '%'}
         </Card.Text>
       </>
     );
