@@ -23,7 +23,8 @@ export const recommendationReducer = () => {
                 return {
                     ...state,
                     recommendations: action.recommendations,
-                    rec_loading: action.loading
+                    rec_loading: action.loading,
+                    rec_error: false
                 };
             case ActionTypes.ERROR_FETCHING_RECOMMENDATIONS:
                 return {...state, rec_error: action.error, rec_loading: action.loading};

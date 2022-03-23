@@ -2,6 +2,7 @@ import io
 import json
 from datetime import datetime
 from typing import Dict
+from app.utils.eventlog import get_log
 
 from app import db
 from app.discovery.model import Discovery
@@ -136,7 +137,7 @@ class ConformanceService:
     @staticmethod
     def generate_dfg(params: Dict[str, int | str]):
         el = EventlogModel.query.get(params["eventlogId"])
-        log = xes_importer(el.file)
+        log = get_log(el, params.get("parameters", {}))
 
         if params.get("ltlChecker"):
             attributes = {
@@ -153,24 +154,11 @@ class ConformanceService:
         else:
             attributes = {}
 
-        # discovery = Discovery.query.get(params["modelId"])
-        # if discovery.file_type == "bpmn":
-        #     bpmn_graph = bpnm_importer(discovery.file)
-        #     net, im, fm = bpmn_converter.apply(bpmn_graph)
-        # elif discovery.file_type == "pnml":
-        #     net, im, fm = import_petri_from_string(discovery.file)
-
-        # if params.get("graphType") == "pn":
-        #     gviz = pn_visualizer.apply(net, im, fm)
         if params.get("graphType") == "tree":
             tree = inductive_miner.apply_tree(log)
             gviz = pt_visualizer.apply(tree)
         else:
             gviz = gviz_dfg(log)
-
-        # net, im, fm = decision_mining.create_data_petri_nets_with_decisions(
-        #     log, net, im, fm
-        # )
 
         return {
             "data": str(gviz),
@@ -222,11 +210,23 @@ class ConformanceService:
             elif discovery.file_type == "pnml":
                 net, im, fm = import_petri_from_string(discovery.file)
 
-        aligned_traces = alignments.apply_log(log, net, im, fm)
+        try:
+            aligned_traces = alignments.apply_log(log, net, im, fm)
+        except Exception as e:
+            print("Alignments traces. Error", e)
+            aligned_traces = []
 
-        fitness = replay_fitness_evaluator.apply(
-            log, net, im, fm, variant=replay_fitness_evaluator.Variants.ALIGNMENT_BASED
-        )
+        try:
+            fitness = replay_fitness_evaluator.apply(
+                log,
+                net,
+                im,
+                fm,
+                variant=replay_fitness_evaluator.Variants.ALIGNMENT_BASED,
+            )
+        except Exception as e:
+            print("Alignments fitness. Error", e)
+            fitness = {}
 
         return {
             "data": json.dumps(aligned_traces),
@@ -270,6 +270,7 @@ class ConformanceService:
             new_eventlog.case = el.case
             new_eventlog.activity = el.activity
             new_eventlog.timestamp = el.timestamp
+            new_eventlog.profile_id = params.get("profileId", el.profile_id)
 
         try:
             db.session.add(new_eventlog)

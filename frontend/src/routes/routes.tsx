@@ -65,8 +65,8 @@ const dashboardRoutes: route[] = [
   },
   {
     path: "/process_mining_dashboard",
-    name: "Dashboard",
-    title: "Dashboard",
+    name: "Process Mining Dashboard",
+    title: "Process Mining Dashboard",
     icon: "nc-icon nc-chart-bar-32",
     component: PM4PYDashboard,
     layout: "/user",
