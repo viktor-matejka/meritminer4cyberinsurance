@@ -54,7 +54,7 @@ def generate_pnml_file(params):
     if not eventlog:
         return
 
-    log = get_log(eventlog)
+    log = get_log(eventlog, params)
 
     # Get Petri Net for save
     net, im, fm = process_discovery(
@@ -139,7 +139,7 @@ def get_heu_net(params):
     if not eventlog:
         return
 
-    log = get_log(eventlog)
+    log = get_log(eventlog, params)
     heu_map = pm4py.discover_heuristics_net(log)
     heu_gviz = hn_visualizer.apply(heu_map)
     hn_visualizer.save(heu_gviz, heu_file)
@@ -254,12 +254,13 @@ def get_statistics(log: EventLog, params: Dict[str, str]):
             },
         )
     except Exception as e:
-        print(e)
+        print("Median Case Duration. ERROR:", e)
         median_case_duration = None
 
     try:
         variants_count = len(case_statistics.get_variant_statistics(log))
-    except Exception:
+    except Exception as e:
+        print("Number of Variants. ERROR:", e)
         variants_count = None
 
     try:
@@ -273,13 +274,14 @@ def get_statistics(log: EventLog, params: Dict[str, str]):
         hw_values = get_network_data(hw_values)
 
     except Exception as e:
-        print(e)
+        print("Handover of Work. ERROR: ", e)
         hw_values = None
 
     try:
         dictio = rework_cases.apply(log)
         dictio_count = get_rework_count(dictio)
-    except Exception:
+    except Exception as e:
+        print("Rework (cases). ERROR: ", e)
         dictio_count = None
 
     net, im, fm = process_discovery(log, activity)
@@ -291,13 +293,15 @@ def get_statistics(log: EventLog, params: Dict[str, str]):
             fm,
             variant=replay_fitness_evaluator.Variants.TOKEN_BASED,
         )
-    except Exception:
+    except Exception as e:
+        print("Average Trace Fitness. ERROR: ", e)
         fitness = {}
 
     try:
         rework_rate = round(dictio_count / int(cases_count), 2)
-    except:
+    except Exception as e:
         rework_rate = None
+        print("Rework rate. ERROR: ", e)
 
     result = [
         {"key": "Median Case Duration", "value": median_case_duration},
