@@ -382,7 +382,7 @@ class DashboardService:
         )
 
         underwritings_id = []
-        for item in eventlogs:
+        for item in underwritings:
             underwritings_id.append(item.id)
 
         policies = db.session.query(Policy).filter(
@@ -392,7 +392,6 @@ class DashboardService:
         policies_id = []
         for item in policies:
             policies_id.append(item.id)
-
         risks = db.session.query(Risk).filter(Risk.policy_id.in_(policies_id)).all()
         coverages = (
             db.session.query(Coverage).filter(Coverage.policy_id.in_(policies_id)).all()
@@ -403,7 +402,7 @@ class DashboardService:
             "overallFitness": overall_fitness,
             "risks": risks,
             "coverages": coverages,
-            "ltlRules" : ltl_rules
+            "ltlRules": ltl_rules,
         }
 
     @staticmethod
