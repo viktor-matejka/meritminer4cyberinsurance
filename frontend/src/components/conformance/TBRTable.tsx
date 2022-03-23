@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, InputPicker, Table } from "rsuite";
+import {
+  Button,
+  Form,
+  FormGroup,
+  InputPicker,
+  Table,
+  Icon,
+  Tooltip,
+  Whisper,
+} from "rsuite";
 import { Endpoints } from "const/endpoints";
 
 interface TBRTableProps {
@@ -21,6 +30,10 @@ export const TBRTable: React.FC<TBRTableProps> = (props) => {
   const [sortColumn, setSortColumn] = useState<any>();
   const [sortType, setSortType] = useState<any>();
   const [overallFitness, setOverallFitness] = useState<number>();
+
+  const hints = {
+    tables: <Tooltip>Select Eventlog and  created Model </Tooltip>,
+  };
 
   const getTBRDataList = () => {
     if (tbrData && sortColumn && sortType) {
@@ -89,14 +102,19 @@ export const TBRTable: React.FC<TBRTableProps> = (props) => {
               valueKey="id"
               labelKey="name"
               value={modelId}
-              data={modelList.filter((item: any) => {
-                return item.eventlogId === eventlogId
-              })}
+              data={modelList}
               onSelect={(value) => setModelId(value)}
               onClean={() => setModelId(undefined)}
             />
           </FormGroup>
           <FormGroup controlId="eventlog">
+            <Whisper
+              placement="top"
+              trigger="hover"
+              speaker={hints.tables}
+            >
+              <Icon className="mt-5 mr-2" icon="question2" />
+            </Whisper>
             <Button
               disabled={eventlogId && modelId ? false : true}
               appearance="primary"

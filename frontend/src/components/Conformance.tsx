@@ -160,15 +160,14 @@ export const Conformance = () => {
   };
 
   useEffect(() => {
+    getProfiles();
     const params = new URLSearchParams(window.location.search);
     const profileIdValue = params.get("profileId");
     if (profileIdValue) setProfileId(parseInt(profileIdValue));
     const eventlogIdValue = params.get("eventlogId");
     if (eventlogIdValue) setEventlogId(parseInt(eventlogIdValue));
     const processIdValue = params.get("processId");
-    if (processIdValue) setEventlogId(parseInt(processIdValue));
-
-    getProfiles();
+    if (processIdValue) setProcesslId(parseInt(processIdValue));
   }, []);
 
   useEffect(() => {
@@ -187,13 +186,16 @@ export const Conformance = () => {
   useEffect(() => {
     if (profileId) {
       getProcesses(profileId);
-    } else {
-      setProcesslId(undefined);
     }
+    // else {
+    //   console.log('setProcesslId(undefined)');
+
+    //   setProcesslId(undefined);
+    // }
   }, [profileId]);
 
   useEffect(() => {
-    if (processId && profileId) {
+    if (processId) {
       getDiscoveryModels(processId);
       getEventlogList(processId);
     } else {
@@ -247,6 +249,7 @@ export const Conformance = () => {
                     }}
                     onClean={() => {
                       setProfileId(undefined);
+                      setProcesslId(undefined);
                     }}
                   />
                 </FormGroup>
@@ -258,7 +261,7 @@ export const Conformance = () => {
                     valueKey="id"
                     labelKey="title"
                     data={processList.filter((item: any) => {
-                      return item.profileId === profileId
+                      return item.profileId === profileId;
                     })}
                     onSelect={(v) => {
                       setProcesslId(v);

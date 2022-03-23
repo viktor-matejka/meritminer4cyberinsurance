@@ -192,7 +192,7 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
   const discoveryWithRule = (id: number) => {
     if (!profileId && !id) return;
 
-    const url = "discovery/?";
+    const url = "/user/discovery/?";
     const params = new URLSearchParams();
     if (id) {
       params.append("eventlogId", id.toString() || "");
@@ -207,33 +207,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
 
     history.push(url + params.toString());
   };
-
-  // const cleanFileds = () => {
-  //   setLTLRuleValue(undefined);
-  //   setActivityA("");
-  //   setActivityB("");
-  //   setActivityC("");
-  //   setActivityD("");
-  // };
-
-  // useEffect(() => {
-  //   if (newLog) {
-  //     discoveryWithRule();
-  //   }
-  // }, [newLog]);
-
-  // useEffect(() => {
-  //   if (selectedLTL) {
-  //     setLTLName(selectedLTL["name"]);
-  //     setLTLDescription(selectedLTL["description"]);
-  //     setLTLRuleValue(selectedLTL["rule"]);
-  //     setActivityA(selectedLTL["source_inssurer"]["A"]);
-  //     setActivityB(selectedLTL["source_inssurer"]["B"]);
-  //     setActivityC(selectedLTL["source_inssurer"]["C"]);
-  //     setActivityD(selectedLTL["source_inssurer"]["D"]);
-  //     setEventlogId(selectedLTL["eventlog_id"]);
-  //   }
-  // }, [selectedLTL]);
 
   useEffect(() => {
     switch (activityCount) {
@@ -275,8 +248,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
       activityB,
       activityC,
       activityD,
-      // name: LTLName,
-      // description: LTLDescription,
     });
   }, [LTLruleValue, activityA, activityB, activityC, activityD]);
 
@@ -329,7 +300,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
 
   return (
     <>
-      {/* {eventlogId && ( */}
       <>
         <h4>LTL Checker</h4>
         <h5>
@@ -339,7 +309,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
         </h5>
         <Row>
           <Col md={24}>
-            {/* {!activitiesError && ( */}
             <Form layout="inline">
               <FormGroup controlId="rule">
                 <ControlLabel>Saved LTL</ControlLabel>
@@ -363,7 +332,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
                   onClean={() => setLTLRuleValue(undefined)}
                 />
               </FormGroup>
-              {/* {!activitiesError && ( */}
               <>
                 {activityCount && activityCount >= 1 && (
                   <FormGroup controlId="activity_a">
@@ -410,7 +378,6 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
                   </FormGroup>
                 )}
               </>
-              {/* )} */}
               {activityList && activityList.length === 0 && (
                 <p>
                   You need to select parameters on the event event log page for
@@ -461,12 +428,9 @@ export const LTLChecher: React.FC<LTLChecherProps> = (props) => {
                 Save Log and Discovery
               </Button>
             </Form>
-            {/* )} */}
-            {/* {activitiesError && <p>{activitiesError}</p>} */}
           </Col>
         </Row>
       </>
-      {/* )} */}
     </>
   );
 };
