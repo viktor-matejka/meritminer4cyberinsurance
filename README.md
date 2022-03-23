@@ -12,9 +12,11 @@ There are many metrics methods that could be added, and the prototype  by no mea
 
 ## How to run the project
 
+### Create a GitHub account and clone this repository to youur local machine. Please make sure you are running the latest version of Docker
+
 ### Setup .env
 
-Create `.env` file usign the `.env.example` in the GitHub repository
+Create `.env` file using the `.env.example` in the GitHub repository
 
 ### Run docker-compose
 
