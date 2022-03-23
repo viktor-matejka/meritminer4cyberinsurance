@@ -132,6 +132,7 @@ export const Discovery = () => {
     const url = new URL("http://127.0.0.1:3001/user/conformance/");
     const urlSearchParams = new URLSearchParams();
     urlSearchParams.append("eventlogId", eventlogId?.toString() || "");
+    urlSearchParams.append("processId", processId?.toString() || "");
     urlSearchParams.append("profileId", profileId?.toString() || "");
     url.search = urlSearchParams.toString();
     return url.href;
@@ -264,7 +265,6 @@ export const Discovery = () => {
 
     const url = new URL(Endpoints.discovery + "statistics/");
     const urlSearchParams = new URLSearchParams();
-    console.log("caseParameter", caseParameter);
 
     urlSearchParams.set("eventlogId", eventlogId.toString());
     urlSearchParams.set("case", caseParameter);
@@ -277,18 +277,6 @@ export const Discovery = () => {
         response.json().then((data) => {
           setStatData(data);
           setStatError(false);
-          // const statData = data["statistics"];
-          // const how = statData[7];
-          // console.log('how', );
-
-          // if (how["value"] !== 'null') {
-          //   setNodes(JSON.parse(data["statistics"][7]["value"])["nodes"]);
-          //   setEdges(JSON.parse(data["statistics"][7]["value"])["edges"]);
-          // } else {
-          //   setNodes([]);
-          //   setEdges([]);
-          // }
-          // setStatisticsData(statData);
         });
       })
       .catch((err) => {
@@ -379,28 +367,9 @@ export const Discovery = () => {
     );
   };
 
-  // useEffect(() => {
-  //   if (
-  //     (eventlogId && algorithm && modelId !== 0) ||
-  //     (eventlogId && algorithm) ||
-  //     eventlogId ||
-  //     (caseParameter && activityParameter && timestampParameter)
-  //   ) {
-  //     getGaphvizData(modelId);
-  //   }
-  // }, [
-  //   eventlogId,
-  //   algorithm,
-  //   modelId,
-  //   caseParameter,
-  //   activityParameter,
-  //   timestampParameter,
-  //   processTree,
-  // ]);
-
-  // useEffect(() => {
-  //   getGaphvizData(modelId)
-  // }, [showGraph])
+  useEffect(() => {
+    if (eventlogList && eventlogId) setEventlogParameters(eventlogId);
+  }, [eventlogList, eventlogId]);
 
   useEffect(() => {
     if (!modelId && modelId === 0) return;
@@ -526,7 +495,6 @@ export const Discovery = () => {
                               })}
                               onSelect={(value) => {
                                 setEventlogId(value);
-                                setEventlogParameters(value);
                                 setShowGraph(false);
                                 setShowStatistics(false);
                               }}
@@ -597,9 +565,7 @@ export const Discovery = () => {
                 {processId && (
                   <Form id="parametersValues" layout="inline">
                     <hr />
-                    {/* <Row> */}
                     <h4>Select parameters for Discovery</h4>
-                    {/* <Col md={6}> */}
                     <FormGroup controlId="parameterCase">
                       <ControlLabel className="d-block">Case</ControlLabel>
                       <InputPicker
@@ -612,8 +578,6 @@ export const Discovery = () => {
                         onClean={() => setCaseParameter("")}
                       />
                     </FormGroup>
-                    {/* </Col>
-                      <Col md={6}> */}
                     <FormGroup controlId="parameterActivity">
                       <ControlLabel className="d-block">Activity</ControlLabel>
                       <InputPicker
@@ -626,8 +590,6 @@ export const Discovery = () => {
                         onClean={() => setActivityParameter("")}
                       />
                     </FormGroup>
-                    {/* </Col>
-                      <Col md={6}> */}
                     <FormGroup controlId="parameterTimestamp">
                       <ControlLabel className="d-block">Timestamp</ControlLabel>
                       <InputPicker
@@ -640,19 +602,13 @@ export const Discovery = () => {
                         onClean={() => setTimestampParameter("")}
                       />
                     </FormGroup>
-
-                    {/* </Col>
-                    </Row> */}
                     <Form></Form>
-                    {/* <Row>
-                  <Col md={8}> */}
                     <FormGroup>
                       <ControlLabel className="d-block">
                         Please select a discovery algorithm to apply
                       </ControlLabel>
                       <ButtonGroup className="ml-2">
                         <Button
-                          // disabled={processTree ? true : false}
                           appearance={
                             algorithm === "alpha_miner" ? "primary" : "ghost"
                           }
@@ -671,7 +627,6 @@ export const Discovery = () => {
                           Inductive Miner
                         </Button>
                         <Button
-                          // disabled={processTree ? true : false}
                           appearance={
                             algorithm === "heuristics_miner"
                               ? "primary"
@@ -683,9 +638,7 @@ export const Discovery = () => {
                         </Button>
                       </ButtonGroup>
                     </FormGroup>
-                    {/* </Col> */}
                     {algorithm === "inductive_miner" && (
-                      // <Col md={6}>
                       <FormGroup className="mt-4" controlId="parameterActivity">
                         <ControlLabel className="d-block">
                           Use process tree notation
@@ -695,10 +648,8 @@ export const Discovery = () => {
                           onChange={(v) => setProcessTree(v)}
                         />
                       </FormGroup>
-                      // </Col>
                     )}
                     {algorithm === "heuristics_miner" && (
-                      // <Col md={6}>
                       <FormGroup className="mt-4" controlId="parameterActivity">
                         <ControlLabel className="d-block">
                           Use Heuristic Net notation
@@ -708,9 +659,7 @@ export const Discovery = () => {
                           onChange={(v) => setHeuNet(v)}
                         />
                       </FormGroup>
-                      // </Col>
                     )}
-                    {/* <Col md={6}> */}
                     <FormGroup controlId="parameterActivity">
                       <ControlLabel className="d-block">
                         Input name to save discovered model
@@ -721,8 +670,6 @@ export const Discovery = () => {
                         onChange={(v) => setModelName(v)}
                       />
                     </FormGroup>
-                    {/* </Col>
-                      <Col md={4}> */}
                     <FormGroup style={{ widows: "200px" }}>
                       <ControlLabel className="d-block"></ControlLabel>
 
@@ -754,17 +701,12 @@ export const Discovery = () => {
                         Save discovered model
                       </Button>
                     </FormGroup>
-                    {/* </Col>
-                    </Row> */}
                   </Form>
                 )}
-                {/* {eventlogId && (
-                  <> */}
                 <Button
                   active={showGraph}
                   className="m-3"
                   color="blue"
-                  // onClick={() => setShowGraph(showGraph ? false : true)}
                   onClick={() => getGaphvizData(modelId)}
                 >
                   Display visualisation of process
@@ -780,13 +722,9 @@ export const Discovery = () => {
                   className="m-3"
                   color="blue"
                   onClick={() => getStatisticsData()}
-                  // onClick={() =>
-                  //   setShowStatistics(showStatistics ? false : true)
-                  // }
                 >
                   Display process statistics
                 </Button>
-                {/* {showStatistics && ( */}
                 <Statistics
                   eventlogId={eventlogId}
                   caseValue={caseParameter}
@@ -798,9 +736,6 @@ export const Discovery = () => {
                   statData={statData}
                   statError={statError}
                 />
-                {/* )} */}
-                {/* </>
-                )} */}
 
                 <br />
                 {eventlogId && (

@@ -41,6 +41,9 @@ const model = Schema.Model({
   externalAdvisor: BooleanType().isRequired("This field is required."),
   successfulAttacks: NumberType(),
   failedAttacks: NumberType(),
+  budgetWeight: NumberType(),
+
+  employeeTraining: NumberType(),
 });
 
 class AmountInput extends React.Component<{ onChange: any }> {
@@ -182,14 +185,21 @@ export const Profile = () => {
         return item.id === profileId;
       });
       setFormValue(selectedProfile[0]);
+      dispatch({
+        type: ActionTypes.UPDATING_PROFILE,
+        profile: formValue,
+      });
     }
   }, [profileId, profileList]);
 
   useEffect(() => {
-    dispatch({
-      type: ActionTypes.UPDATING_PROFILE,
-      profile: formValue,
-    });
+    if (formValue && formValue.id) {
+      setProfileId(formValue.id);
+    }
+  }, [formValue]);
+
+  useEffect(() => {
+    console.log(" cahnge formValue", formValue);
   }, [formValue]);
 
   return (
@@ -207,7 +217,7 @@ export const Profile = () => {
                     name="profileList"
                     labelKey="companyName"
                     valueKey="id"
-                    value={profileId}
+                    value={formValue?.id}
                     data={profileList}
                     onSelect={(profileId: number) => {
                       const selectedProfile = profileList.filter(
@@ -234,12 +244,6 @@ export const Profile = () => {
                 formValue={formValue}
                 onChange={(formValues) => {
                   setFormValue(formValues as UserProfile);
-                }}
-                onSubmit={() => {
-                  dispatch({
-                    type: ActionTypes.UPDATING_PROFILE,
-                    profile: formValue,
-                  });
                 }}
               >
                 <Row style={{ marginTop: 22 }}>
@@ -430,6 +434,10 @@ export const Profile = () => {
                     onClick={() => {
                       updateProfile();
                       toast.success("Profile updated successfully!");
+                      dispatch({
+                        type: ActionTypes.UPDATING_PROFILE,
+                        profile: formValue,
+                      });
                     }}
                     color="green"
                     className="btn-fill pull-right"
@@ -444,6 +452,10 @@ export const Profile = () => {
                     onClick={() => {
                       createProfile();
                       toast.success("Profile Create successfully!");
+                      dispatch({
+                        type: ActionTypes.UPDATING_PROFILE,
+                        profile: formValue,
+                      });
                     }}
                     color="green"
                     className="btn-fill pull-right"
